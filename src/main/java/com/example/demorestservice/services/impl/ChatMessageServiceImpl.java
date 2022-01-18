@@ -1,0 +1,37 @@
+package com.example.demorestservice.services.impl;
+
+import com.example.demorestservice.entities.ChatMessage;
+import com.example.demorestservice.entities.Messages;
+import com.example.demorestservice.entities.Product;
+import com.example.demorestservice.repositories.ChatMessageRepository;
+import com.example.demorestservice.services.ChatMessageService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.Optional;
+
+@Service
+public class ChatMessageServiceImpl implements ChatMessageService {
+
+    @Autowired
+    private ChatMessageRepository chatMessageRepository;
+
+    @Override
+    public ChatMessage addChatMessage(ChatMessage chatMessage) {
+        return chatMessageRepository.save(chatMessage);
+    }
+
+    @Override
+    public ChatMessage getChatMessage(Long chatMessageId) {
+        Optional<ChatMessage> chat = chatMessageRepository.findById(chatMessageId);
+        return chat.orElse(null);
+    }
+
+    @Override
+    public List<Messages> getAllMessagesFromChatMessage(Long chatMessageId) {
+        ChatMessage chatMessage = getChatMessage(chatMessageId);
+        return chatMessage.getMessages();
+    }
+}
