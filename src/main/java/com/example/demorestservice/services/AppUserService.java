@@ -10,7 +10,7 @@ import java.util.List;
 @Service
 public interface AppUserService {
 
-    AppUser registerUser(SignUpRequestDto appUser) throws Exception;
+    String registerUser(SignUpRequestDto appUser) throws Exception;
 
     AppUser getAppUser(Long appUserId);
 

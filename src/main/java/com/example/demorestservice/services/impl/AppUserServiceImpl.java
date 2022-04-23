@@ -3,12 +3,14 @@ package com.example.demorestservice.services.impl;
 import com.example.demorestservice.entities.AppUser;
 import com.example.demorestservice.entities.Role;
 import com.example.demorestservice.exceptions.PasswordMismatchException;
-import com.example.demorestservice.exceptions.UserExist;
+import com.example.demorestservice.exceptions.UserDoesNotExist;
+import com.example.demorestservice.exceptions.UserExistException;
 import com.example.demorestservice.models.request.SignUpRequestDto;
 import com.example.demorestservice.repositories.AppUserRepository;
 import com.example.demorestservice.repositories.RoleRepository;
 import com.example.demorestservice.services.AppUserService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
+import org.modelmapper.ModelMapper;
 import org.springframework.data.repository.cdi.Eager;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -20,43 +22,43 @@ import java.util.Optional;
 
 @Service
 @Eager
+@RequiredArgsConstructor
 public class AppUserServiceImpl implements AppUserService {
 
-    private AppUserRepository appUserRepository;
-    private RoleRepository roleRepository;
+    private final AppUserRepository appUserRepository;
+    private final RoleRepository roleRepository;
     private final PasswordEncoder passwordEncoder;
+    private final ModelMapper modelMapper;
 
-    @Autowired
-    public AppUserServiceImpl(AppUserRepository appUserRepository, RoleRepository roleRepository, PasswordEncoder passwordEncoder) {
-        this.appUserRepository = appUserRepository;
-        this.roleRepository = roleRepository;
-        this.passwordEncoder = passwordEncoder;
-    }
 
     @Override
-    public AppUser registerUser(SignUpRequestDto appUser) throws Exception {
-        if(appUserRepository.findByEmail(appUser.getEmail()) != null)
-            throw new UserExist();
-        if(!appUser.getPassword().equals(appUser.getRepeat_password()))
-            throw new PasswordMismatchException();
-        AppUser appUser1 = new AppUser();
-        appUser1.setFirstName(appUser.getFirstName());
-        appUser1.setLastName(appUser.getLastName());
-        appUser1.setPassword(passwordEncoder.encode(appUser.getPassword()));
-        appUser1.setEmail(appUser.getEmail());
-        appUser1.setUsername(appUser.getUsername());
-        return appUserRepository.save(appUser1);
+    public String registerUser(SignUpRequestDto userRequest) throws Exception {
+        Optional<AppUser> checkEmail = appUserRepository.findAppUserByEmail(userRequest.getEmail());
+        Optional<AppUser> checkUsername = appUserRepository.findByUsername(userRequest.getUsername());
+        if(checkEmail.isEmpty()){
+            if(checkUsername.isEmpty()) {
+                if (!userRequest.getPassword().equals(userRequest.getRepeat_password()))
+                    throw new PasswordMismatchException("Password does not match");
+                AppUser appUser1 = modelMapper.map(userRequest, AppUser.class);
+                appUser1.setPassword(passwordEncoder.encode(userRequest.getPassword()));
+                appUserRepository.save(appUser1);
+            }else {
+                throw new UserExistException("Username already taken");
+            }
+        }else {
+            throw new UserExistException("Email already exist");
+        }
+        return "User successfully Registered";
     }
 
     @Override
     public AppUser getAppUser(Long appUserId) {
-        Optional<AppUser> appUser = appUserRepository.findById(appUserId);
-        return appUser.orElse(null);
+        return appUserRepository.findById(appUserId).orElse(null);
     }
 
     @Override
     public AppUser getAppUserByUsername(String username) {
-        return appUserRepository.findByUsername(username);
+        return appUserRepository.findByUsername(username).orElse(null);
     }
 
     @Override

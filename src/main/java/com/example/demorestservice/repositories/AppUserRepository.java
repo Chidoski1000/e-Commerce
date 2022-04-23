@@ -3,9 +3,11 @@ package com.example.demorestservice.repositories;
 import com.example.demorestservice.entities.AppUser;
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import java.util.Optional;
+
 public interface AppUserRepository extends JpaRepository<AppUser, Long> {
 
-    AppUser findByEmail(String email);
+    Optional<AppUser> findAppUserByEmail(String email);
 
-    AppUser findByUsername(String username);
+    Optional<AppUser> findByUsername(String username);
 }

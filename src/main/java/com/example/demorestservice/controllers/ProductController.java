@@ -3,12 +3,10 @@ package com.example.demorestservice.controllers;
 import com.example.demorestservice.entities.Product;
 import com.example.demorestservice.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/product")
@@ -42,7 +40,7 @@ public class ProductController {
         return ResponseEntity.ok(productService.updateProduct(product));
     }
 
-    @DeleteMapping("/")
+    @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteProduct(@PathVariable Long id){
         return ResponseEntity.ok(productService.deleteProduct(id));
     }

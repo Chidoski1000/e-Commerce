@@ -2,6 +2,7 @@ package com.example.demorestservice.entities;
 
 import com.example.demorestservice.enums.AppUserType;
 import lombok.Data;
+import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
 import java.util.Collection;
@@ -29,6 +30,7 @@ public class AppUser {
     private AppUserType appUserType;
     private boolean isUserActive = false;
     private boolean isUserVerified = false;
+    @CreationTimestamp
     private Date acctCreationDate;
     @OneToMany(mappedBy = "appUser")
     private List<Complaint> complaint;

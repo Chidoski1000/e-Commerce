@@ -22,21 +22,4 @@ public class DemoRestServiceApplication {
 	BCryptPasswordEncoder passwordEncoder(){
 		return new BCryptPasswordEncoder();
 	}
-
-	@Bean
-	CommandLineRunner run(RoleService roleService, AppUserService appUserService){
-		return args -> {
-			roleService.addRoleIfNotPresent(new RoleRequestDto("ROLE_ADMIN"));
-			roleService.addRoleIfNotPresent(new RoleRequestDto("ROLE_COLLABORATOR"));
-        	roleService.addRoleIfNotPresent(new RoleRequestDto("ROLE_DEALER"));
-			roleService.addRoleIfNotPresent(new RoleRequestDto("ROLE_BUYER"));
-
-			if(appUserService.getAppUserByUsername("Test") == null)
-			appUserService.registerUser(new SignUpRequestDto("Test", "1234", "1234",
-					"test@gmail.com", "First", "Last"));
-			appUserService.addRoleToUser("Test", "ROLE_ADMIN");
-			appUserService.addRoleToUser("Test", "ROLE_DEALER");
-		};
-	}
-
 }
