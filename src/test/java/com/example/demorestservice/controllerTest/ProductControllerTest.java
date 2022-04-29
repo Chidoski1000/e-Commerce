@@ -1,6 +1,5 @@
 package com.example.demorestservice.controllerTest;
 
-//import com.example.demorestservice.config.JwtAuthenticationEntryPoint;
 import com.example.demorestservice.config.UserDetailServiceImpl;
 import com.example.demorestservice.controllers.ProductController;
 import com.example.demorestservice.filter.util.FilterUtil;
@@ -15,10 +14,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 
@@ -33,9 +32,6 @@ public class ProductControllerTest {
 
     @MockBean
     private ProductService productService;
-
-//    @MockBean
-//    private JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint;
 
     @MockBean
     private FilterUtil filterUtil;
@@ -53,7 +49,7 @@ public class ProductControllerTest {
 
 
     @Test
-//    @WithMockUser("test@gmail.com")
+    @WithMockUser("test@gmail.com")
     void getProductsf() throws Exception {
 
         mockMvc.perform(get("/api/product/"))
