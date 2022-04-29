@@ -1,7 +1,7 @@
 package com.example.demorestservice.services.impl;
 
-import com.example.demorestservice.models.request.RoleRequestDto;
-import com.example.demorestservice.models.request.SignUpRequestDto;
+import com.example.demorestservice.request.RoleRequestDto;
+import com.example.demorestservice.request.SignUpRequestDto;
 import com.example.demorestservice.services.AppUserService;
 import com.example.demorestservice.services.RoleService;
 import lombok.RequiredArgsConstructor;

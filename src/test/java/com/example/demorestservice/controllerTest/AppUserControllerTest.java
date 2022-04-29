@@ -3,7 +3,7 @@ package com.example.demorestservice.controllerTest;
 import com.example.demorestservice.config.UserDetailServiceImpl;
 import com.example.demorestservice.controllers.AppUserController;
 import com.example.demorestservice.filter.util.FilterUtil;
-import com.example.demorestservice.models.request.LoginRequestDto;
+import com.example.demorestservice.request.LoginRequestDto;
 import com.example.demorestservice.services.AppUserService;
 import com.example.demorestservice.services.ProductService;
 import com.fasterxml.jackson.databind.ObjectMapper;

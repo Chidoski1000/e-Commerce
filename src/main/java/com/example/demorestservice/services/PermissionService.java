@@ -1,7 +1,7 @@
 package com.example.demorestservice.services;
 
-import com.example.demorestservice.entities.Permission;
-import com.example.demorestservice.models.request.PermissionRequestDto;
+import com.example.demorestservice.models.Permission;
+import com.example.demorestservice.request.PermissionRequestDto;
 
 
 public interface PermissionService {

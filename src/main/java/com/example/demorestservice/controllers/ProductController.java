@@ -1,6 +1,6 @@
 package com.example.demorestservice.controllers;
 
-import com.example.demorestservice.entities.Product;
+import com.example.demorestservice.models.Product;
 import com.example.demorestservice.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

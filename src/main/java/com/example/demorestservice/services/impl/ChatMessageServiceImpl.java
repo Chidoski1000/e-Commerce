@@ -1,12 +1,10 @@
 package com.example.demorestservice.services.impl;
 
-import com.example.demorestservice.entities.ChatMessage;
-import com.example.demorestservice.entities.Messages;
-import com.example.demorestservice.entities.Product;
+import com.example.demorestservice.models.ChatMessage;
+import com.example.demorestservice.models.Messages;
 import com.example.demorestservice.repositories.ChatMessageRepository;
 import com.example.demorestservice.services.ChatMessageService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

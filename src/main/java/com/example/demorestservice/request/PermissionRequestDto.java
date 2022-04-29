@@ -1,4 +1,4 @@
-package com.example.demorestservice.models.request;
+package com.example.demorestservice.request;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -7,7 +7,6 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class RoleRequestDto {
+public class PermissionRequestDto {
     private String name;
-
 }

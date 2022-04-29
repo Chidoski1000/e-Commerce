@@ -1,4 +1,4 @@
-package com.example.demorestservice.models.response;
+package com.example.demorestservice.responses;
 
 import lombok.Data;
 

@@ -1,7 +1,7 @@
 package com.example.demorestservice.services.impl;
 
-import com.example.demorestservice.entities.Permission;
-import com.example.demorestservice.models.request.PermissionRequestDto;
+import com.example.demorestservice.models.Permission;
+import com.example.demorestservice.request.PermissionRequestDto;
 import com.example.demorestservice.repositories.PermissionRepository;
 import com.example.demorestservice.services.PermissionService;
 import org.springframework.beans.factory.annotation.Autowired;

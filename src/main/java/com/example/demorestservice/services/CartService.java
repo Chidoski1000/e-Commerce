@@ -1,8 +1,7 @@
 package com.example.demorestservice.services;
 
-import com.example.demorestservice.entities.Cart;
-import com.example.demorestservice.entities.Product;
-import org.springframework.data.domain.Page;
+import com.example.demorestservice.models.Cart;
+import com.example.demorestservice.models.Product;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

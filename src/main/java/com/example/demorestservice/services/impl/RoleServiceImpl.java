@@ -1,7 +1,7 @@
 package com.example.demorestservice.services.impl;
 
-import com.example.demorestservice.entities.Role;
-import com.example.demorestservice.models.request.RoleRequestDto;
+import com.example.demorestservice.models.Role;
+import com.example.demorestservice.request.RoleRequestDto;
 import com.example.demorestservice.repositories.RoleRepository;
 import com.example.demorestservice.services.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;

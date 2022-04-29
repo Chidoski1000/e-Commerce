@@ -1,7 +1,7 @@
 package com.example.demorestservice.services;
 
-import com.example.demorestservice.entities.AppUser;
-import com.example.demorestservice.models.request.SignUpRequestDto;
+import com.example.demorestservice.models.AppUser;
+import com.example.demorestservice.request.SignUpRequestDto;
 import org.springframework.stereotype.Service;
 
 import javax.management.relation.RoleNotFoundException;

@@ -1,7 +1,7 @@
 package com.example.demorestservice.services;
 
-import com.example.demorestservice.entities.Role;
-import com.example.demorestservice.models.request.RoleRequestDto;
+import com.example.demorestservice.models.Role;
+import com.example.demorestservice.request.RoleRequestDto;
 
 public interface RoleService {
 
