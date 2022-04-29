@@ -1,8 +1,6 @@
 package com.example.demorestservice.services;
 
-import com.example.demorestservice.entities.Product;
-import com.example.demorestservice.entities.Wallet;
-import org.springframework.data.domain.Page;
+import com.example.demorestservice.models.Wallet;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

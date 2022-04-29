@@ -1,4 +1,4 @@
-package com.example.demorestservice.entities;
+package com.example.demorestservice.models;
 
 import lombok.Data;
 

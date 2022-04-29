@@ -1,6 +1,6 @@
 package com.example.demorestservice.services.impl;
 
-import com.example.demorestservice.entities.Product;
+import com.example.demorestservice.models.Product;
 import com.example.demorestservice.repositories.ProductRepository;
 import com.example.demorestservice.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;

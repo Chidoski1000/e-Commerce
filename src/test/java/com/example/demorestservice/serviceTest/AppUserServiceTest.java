@@ -1,21 +1,17 @@
 package com.example.demorestservice.serviceTest;
 
-import com.example.demorestservice.entities.AppUser;
-import com.example.demorestservice.models.request.SignUpRequestDto;
+import com.example.demorestservice.models.AppUser;
+import com.example.demorestservice.request.SignUpRequestDto;
 import com.example.demorestservice.repositories.AppUserRepository;
 import com.example.demorestservice.repositories.RoleRepository;
-import com.example.demorestservice.services.AppUserService;
 import com.example.demorestservice.services.impl.AppUserServiceImpl;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.modelmapper.ModelMapper;
 import org.springframework.security.crypto.password.PasswordEncoder;
-
-import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.any;

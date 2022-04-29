@@ -1,10 +1,5 @@
 package com.example.demorestservice;
 
-import com.example.demorestservice.models.request.RoleRequestDto;
-import com.example.demorestservice.models.request.SignUpRequestDto;
-import com.example.demorestservice.services.AppUserService;
-import com.example.demorestservice.services.RoleService;
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;

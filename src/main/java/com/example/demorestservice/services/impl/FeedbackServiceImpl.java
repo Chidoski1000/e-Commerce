@@ -1,13 +1,11 @@
 package com.example.demorestservice.services.impl;
 
-import com.example.demorestservice.entities.Complaint;
-import com.example.demorestservice.entities.Feedback;
-import com.example.demorestservice.entities.Product;
+import com.example.demorestservice.models.Complaint;
+import com.example.demorestservice.models.Feedback;
 import com.example.demorestservice.repositories.ComplaintRepository;
 import com.example.demorestservice.repositories.FeedbackRepository;
 import com.example.demorestservice.services.FeedbackService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

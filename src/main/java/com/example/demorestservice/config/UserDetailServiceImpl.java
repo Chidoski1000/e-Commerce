@@ -1,9 +1,8 @@
 package com.example.demorestservice.config;
 
-import com.example.demorestservice.entities.AppUser;
+import com.example.demorestservice.models.AppUser;
 import com.example.demorestservice.services.AppUserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;

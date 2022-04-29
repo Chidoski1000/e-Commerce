@@ -1,11 +1,10 @@
 package com.example.demorestservice.services.impl;
 
-import com.example.demorestservice.entities.AppUser;
-import com.example.demorestservice.entities.Role;
+import com.example.demorestservice.models.AppUser;
+import com.example.demorestservice.models.Role;
 import com.example.demorestservice.exceptions.PasswordMismatchException;
-import com.example.demorestservice.exceptions.UserDoesNotExist;
 import com.example.demorestservice.exceptions.UserExistException;
-import com.example.demorestservice.models.request.SignUpRequestDto;
+import com.example.demorestservice.request.SignUpRequestDto;
 import com.example.demorestservice.repositories.AppUserRepository;
 import com.example.demorestservice.repositories.RoleRepository;
 import com.example.demorestservice.services.AppUserService;

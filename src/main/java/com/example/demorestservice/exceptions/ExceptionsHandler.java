@@ -27,10 +27,9 @@ public class ExceptionsHandler {
     private static final String USER_DOES_NOT_EXIST = "User with Details does not exist";
     private static final String PASSWORD_MISMATCH = "The provided passwords does not match";
 
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
+@ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    public ResponseData handleValidationExceptions(MethodArgumentNotValidException ex) {
-
+    public ResponseEntity<ResponseData> handleValidationExceptions(MethodArgumentNotValidException ex) {
         Map<String, String> errors = new HashMap<>();
 
         ex.getBindingResult().getFieldErrors().forEach(error -> {
@@ -41,9 +40,15 @@ public class ExceptionsHandler {
                     }
                 }
         );
-        return new ResponseData(new ApiResponse(errors, "VALIDATION_FAILED"));
+
+        return new ResponseEntity<>(new ResponseData(new ApiResponse(errors, "VALIDATION_FAILED")), HttpStatus.UNAUTHORIZED);
     }
 
+
+    @ExceptionHandler(BadRequestException.class)
+    public ResponseEntity<ResponseData> handleBadRequestException (BadRequestException exception) {
+        return createHttpResponse(HttpStatus.BAD_REQUEST, exception.getMessage());
+    }
 
 
 //    @ExceptionHandler(UserWithEmailNotFound.class)

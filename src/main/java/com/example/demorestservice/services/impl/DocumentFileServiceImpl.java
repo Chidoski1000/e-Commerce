@@ -1,11 +1,9 @@
 package com.example.demorestservice.services.impl;
 
-import com.example.demorestservice.entities.DocumentFile;
-import com.example.demorestservice.entities.Product;
+import com.example.demorestservice.models.DocumentFile;
 import com.example.demorestservice.repositories.DocumentFileRepository;
 import com.example.demorestservice.services.DocumentFileService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

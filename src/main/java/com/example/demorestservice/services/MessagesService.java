@@ -1,8 +1,6 @@
 package com.example.demorestservice.services;
 
-import com.example.demorestservice.entities.Messages;
-import com.example.demorestservice.entities.Product;
-import org.springframework.data.domain.Page;
+import com.example.demorestservice.models.Messages;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

@@ -1,6 +1,6 @@
 package com.example.demorestservice.repositoryTest;
 
-import com.example.demorestservice.entities.AppUser;
+import com.example.demorestservice.models.AppUser;
 import com.example.demorestservice.repositories.AppUserRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

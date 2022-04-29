@@ -1,6 +1,6 @@
 package com.example.demorestservice.repositories;
 
-import com.example.demorestservice.entities.AppUser;
+import com.example.demorestservice.models.AppUser;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;
