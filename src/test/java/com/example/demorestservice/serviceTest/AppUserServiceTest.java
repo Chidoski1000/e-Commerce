@@ -4,6 +4,7 @@ import com.example.demorestservice.models.AppUser;
 import com.example.demorestservice.request.SignUpRequestDto;
 import com.example.demorestservice.repositories.AppUserRepository;
 import com.example.demorestservice.repositories.RoleRepository;
+import com.example.demorestservice.request.UpdateUserRequestDto;
 import com.example.demorestservice.services.impl.AppUserServiceImpl;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -12,6 +13,8 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.modelmapper.ModelMapper;
 import org.springframework.security.crypto.password.PasswordEncoder;
+
+import java.util.Date;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.any;
@@ -43,6 +46,17 @@ public class AppUserServiceTest {
         AppUser appUser12 = new AppUser();
         when(modelMapper.map(signUpRequestDto, AppUser.class)).thenReturn(appUser12);
         String res = appUserService.registerUser(signUpRequestDto);
+        assertThat(res).isNotNull();
+    }
+
+
+    @Test
+    void testUpdateUser() throws Exception {
+        UpdateUserRequestDto userRequestDto = new UpdateUserRequestDto("First", "Last", new Date(),
+                "nil", "nil", "nil", "nil", "nil", "nil");
+
+        String res = appUserService.updateAppUserRecord(userRequestDto);
+        System.out.println(res);
         assertThat(res).isNotNull();
     }
 
