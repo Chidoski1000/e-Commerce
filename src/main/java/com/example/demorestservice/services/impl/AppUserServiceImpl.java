@@ -1,5 +1,6 @@
 package com.example.demorestservice.services.impl;
 
+import com.example.demorestservice.exceptions.UserDoesNotExist;
 import com.example.demorestservice.models.AppUser;
 import com.example.demorestservice.models.Role;
 import com.example.demorestservice.exceptions.PasswordMismatchException;
@@ -7,10 +8,15 @@ import com.example.demorestservice.exceptions.UserExistException;
 import com.example.demorestservice.request.SignUpRequestDto;
 import com.example.demorestservice.repositories.AppUserRepository;
 import com.example.demorestservice.repositories.RoleRepository;
+import com.example.demorestservice.request.UpdateUserRequestDto;
 import com.example.demorestservice.services.AppUserService;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.data.repository.cdi.Eager;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -66,14 +72,22 @@ public class AppUserServiceImpl implements AppUserService {
     }
 
     @Override
-    public AppUser updateAppUserRecord(AppUser appUser) {
-        AppUser appUser1 = getAppUser(appUser.getUserId());
-        appUser1.setUsername(appUser.getUsername());
-        appUser1.setPassword(appUser.getPassword());
-        appUser1.setLastName(appUser.getLastName());
-        appUser1.setFirstName(appUser.getFirstName());
-        appUser1.setEmail(appUser.getEmail());
-        return appUserRepository.save(appUser1);
+    public String updateAppUserRecord(UpdateUserRequestDto userRequestDto) {
+        UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        AppUser appUser1 = getAppUserByUsername(userDetails.getUsername());
+        if(appUser1 == null)
+            throw new UserDoesNotExist("User cannot be found");
+        appUser1.setUsername(userRequestDto.getUsername());
+        appUser1.setLastName(userRequestDto.getLastName());
+        appUser1.setFirstName(userRequestDto.getFirstName());
+        appUser1.setDob(userRequestDto.getDob());
+        appUser1.setAddress(userRequestDto.getAddress());
+        appUser1.setPhoneNo(userRequestDto.getPhoneNo());
+        appUser1.setState(userRequestDto.getState());
+        appUser1.setNin(userRequestDto.getNin());
+        appUser1.setAcctNumber(userRequestDto.getAcctNumber());
+        appUserRepository.save(appUser1);
+        return "User details successfully updated";
     }
 
     @Override

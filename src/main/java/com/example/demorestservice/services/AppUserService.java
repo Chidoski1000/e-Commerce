@@ -2,6 +2,7 @@ package com.example.demorestservice.services;
 
 import com.example.demorestservice.models.AppUser;
 import com.example.demorestservice.request.SignUpRequestDto;
+import com.example.demorestservice.request.UpdateUserRequestDto;
 import org.springframework.stereotype.Service;
 
 import javax.management.relation.RoleNotFoundException;
@@ -18,7 +19,7 @@ public interface AppUserService {
 
     List<AppUser> getAllAppUsers();
 
-    AppUser updateAppUserRecord(AppUser appUser);
+    String updateAppUserRecord(UpdateUserRequestDto updateUserRequestDto);
 
     Boolean deleteAppUser(Long appUserId);
 

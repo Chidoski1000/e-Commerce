@@ -26,8 +26,6 @@ public class AppUser {
     private String username;
     private String password;
     private String nin;
-    @Enumerated(EnumType.STRING)
-    private AppUserType appUserType;
     private boolean isUserActive = false;
     private boolean isUserVerified = false;
     @CreationTimestamp

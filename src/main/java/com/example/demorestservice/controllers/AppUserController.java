@@ -5,12 +5,11 @@ import com.example.demorestservice.config.UserDetailServiceImpl;
 import com.example.demorestservice.exceptions.IncorrectCredentialsException;
 import com.example.demorestservice.request.LoginRequestDto;
 import com.example.demorestservice.request.SignUpRequestDto;
+import com.example.demorestservice.request.UpdateUserRequestDto;
 import com.example.demorestservice.responses.TokenResponseDto;
 import com.example.demorestservice.services.AppUserService;
-import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -79,5 +78,10 @@ public class AppUserController {
         }else{
             throw new Exception("Refresh token is missing");
         }
+    }
+
+    @PostMapping("/updateRecord")
+    private ResponseEntity<String> updateRecord( @RequestBody UpdateUserRequestDto updateRequestDto) {
+        return new ResponseEntity<>(appUserService.updateAppUserRecord(updateRequestDto), HttpStatus.OK);
     }
 }

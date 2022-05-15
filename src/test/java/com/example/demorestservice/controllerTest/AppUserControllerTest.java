@@ -4,6 +4,7 @@ import com.example.demorestservice.config.UserDetailServiceImpl;
 import com.example.demorestservice.controllers.AppUserController;
 import com.example.demorestservice.filter.util.FilterUtil;
 import com.example.demorestservice.request.LoginRequestDto;
+import com.example.demorestservice.request.UpdateUserRequestDto;
 import com.example.demorestservice.services.AppUserService;
 import com.example.demorestservice.services.ProductService;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -19,6 +20,7 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.core.userdetails.User;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 
 import javax.servlet.*;
@@ -35,6 +37,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @ExtendWith(MockitoExtension.class)
 @WebMvcTest(AppUserController.class)
+@WithMockUser("Test")
 public class AppUserControllerTest {
     @Autowired
     private MockMvc mockMvc;
@@ -54,7 +57,7 @@ public class AppUserControllerTest {
 
     @MockBean
     private AuthenticationManager manager;
-
+    ObjectMapper objectMapper = new ObjectMapper();
 
     @BeforeEach
     public void setUp(){
@@ -63,7 +66,6 @@ public class AppUserControllerTest {
     @Test
     void should_be_able_to_login() throws Exception {
         LoginRequestDto loginRequestDto = new LoginRequestDto("Test_User", "12345");
-        ObjectMapper objectMapper = new ObjectMapper();
         HttpServletRequest request = new HttpServletRequest() {
             @Override
             public String getAuthType() {
@@ -421,5 +423,17 @@ public class AppUserControllerTest {
                         .content(objectMapper.writeValueAsString(loginRequestDto)))
                 .andExpect(status().isOk());
 
+    }
+
+
+    @Test
+    void should_updateRecord() throws Exception {
+        UpdateUserRequestDto userRequestDto = new UpdateUserRequestDto("First", "Last", new Date(),
+                "nil", "nil", "nil", "nil", "nil", "nil");
+
+        mockMvc.perform(post("/api/user/updateRecord")
+                .contentType(MediaType.APPLICATION_JSON_VALUE)
+                .content(objectMapper.writeValueAsString(userRequestDto)))
+                .andExpect(status().isOk());
     }
 }
