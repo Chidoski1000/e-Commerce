@@ -1,5 +1,6 @@
 package com.example.demorestservice.services.impl;
 
+import com.example.demorestservice.exceptions.UserDoesNotExist;
 import com.example.demorestservice.models.AppUser;
 import com.example.demorestservice.models.Role;
 import com.example.demorestservice.exceptions.PasswordMismatchException;
@@ -12,6 +13,8 @@ import com.example.demorestservice.services.AppUserService;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.data.repository.cdi.Eager;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -70,9 +73,10 @@ public class AppUserServiceImpl implements AppUserService {
 
     @Override
     public String updateAppUserRecord(UpdateUserRequestDto userRequestDto) {
-//        UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-//        AppUser appUser1 = getAppUserByUsername(userDetails.getUsername());
-        AppUser appUser1 = new AppUser();
+        UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        AppUser appUser1 = getAppUserByUsername(userDetails.getUsername());
+        if(appUser1 == null)
+            throw new UserDoesNotExist("User cannot be found");
         appUser1.setUsername(userRequestDto.getUsername());
         appUser1.setLastName(userRequestDto.getLastName());
         appUser1.setFirstName(userRequestDto.getFirstName());
